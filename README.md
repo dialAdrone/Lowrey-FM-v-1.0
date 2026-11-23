@@ -1,19 +1,23 @@
 # Lowrey FM v 1.0
 
+
 Custom FM-1 firmware emulating my old Lowrey Teenie Geenie Organ with a bonus mode of some fun sounds: two banks of eight layerable voices, a real Mellotron flute (borrowed from the amazing fmel-1) Simple reverb & delay.
 
 This was designed for personal use to be simple, musical and lofi, no sequencer, or screen diving!
-
+<img width="480" height="480" alt="lowrey_fm" src="https://github.com/user-attachments/assets/3879d62c-2cde-412d-add2-260a1a111860" />
 It is one C file, `main.c`, written for **[FM1 Studio](https://fm1studio.com)**.
 
 ## Install
-
+Method ONE:
 1. Open [fm1studio.com](https://fm1studio.com) in Chrome or Edge.
 2. Paste the whole of `main.c` into the editor, replacing the demo.
 3. Press **COMPILE** to try it in the simulator.
 4. Press **DOWNLOAD** to get the `.fwsc` package, then **INSTALL** to write it to the FM-1 over USB.
 
 To go back to the stock firmware, see FM1 Studio's notes on restoring M-VAVE's own package.
+
+Method TWO: download that firmware file and use your prefered installer:
+[Download the firmware (LowreyFM_v1.fwsc)](https://github.com/dialAdrone/Lowrey-FM-v-1.0/releases/download/firmware/LowreyFM_v1.fwsc)
 
 ## Voices
 
