@@ -1,10 +1,16 @@
 # Lowrey FM v 1.0
 
 
-Custom FM-1 firmware emulating my old Lowrey Teenie Geenie Organ with a bonus mode of some fun sounds: two banks of eight layerable voices, a real Mellotron flute (borrowed from the amazing fmel-1) Simple reverb & delay.
+Custom FM-1 firmware emulating my old Lowrey Teenie Geenie Organ with a bonus second sound bank of some fun sounds. Two banks of eight layerable voices, a real Mellotron flute (borrowed from the amazing fmel-1) Simple reverb & delay. Bank two has a emulation of the legendary PS-20's organ, some noise, and other sounds I thought I might use live. 
 
-This was designed for personal use to be simple, musical and lofi, no sequencer, or screen diving!
+I consider those old Top Octave organs to be early additive synthesizers and love their terrible sounds! I vibed this nightmare so I could have a portable version of my organ for gigs. Lean into layering tones like you would an old transistor organ to get some unique sounds. A good example of the real deal in action can be found [here](https://www.youtube.com/watch?v=HUgGfZQORfk) and [here](https://www.youtube.com/watch?v=3ELkWBkUn8I). 
+
+HOLD save to turn the Mellotron flute on and off, hold HOME to switch back and forth between the soundbanks. Hold SEL to have a hold function for drones. FX gets you reverb/delay and the Mellotron volume.
+
+This was designed for personal use to be simple, musical and lofi, no sequencer, or screen diving! I have tested it but use at your own risk! I have no idea how to code, I just wanted this instrument to exist and have access to a free claude account.
+
 <img width="480" height="480" alt="lowrey_fm" src="https://github.com/user-attachments/assets/3879d62c-2cde-412d-add2-260a1a111860" />
+
 It is one C file, `main.c`, written for **[FM1 Studio](https://fm1studio.com)**.
 
 ## Install
@@ -77,7 +83,7 @@ MIDI in works over USB and TRS.
 - **Freeverb** by Jezar at Dreampoint (public domain), the reverb design.
 - The **M-VAVE FM-1**, the hardware. This project is not affiliated with M-VAVE.
 
-## Licence
+## Licence 
 
 `main.c` is free software under the **GNU General Public License, version 3 only** (GPL-3.0-only); see [LICENSE](LICENSE). If you share a build of it, share its source too.
 
