@@ -1,5 +1,5 @@
 # Lowrey FM v 1.0
-The sounds of that fucked organ you street scored now in your FM-1.
+The sounds of that f*cked organ you street scored now in your FM-1.
 
 Custom FM-1 firmware emulating my old Lowrey Teenie Geenie Organ with a bonus second sound bank of some fun sounds. Two banks of eight layerable voices, a real Mellotron flute (borrowed from the amazing fmel-1) Simple reverb & delay. Bank two has a emulation of the legendary PS-20's organ, some noise, and other sounds I thought I might use live. 
 
