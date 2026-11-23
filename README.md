@@ -3,11 +3,18 @@
 
 Custom FM-1 firmware emulating my old Lowrey Teenie Geenie Organ with a bonus second sound bank of some fun sounds. Two banks of eight layerable voices, a real Mellotron flute (borrowed from the amazing fmel-1) Simple reverb & delay. Bank two has a emulation of the legendary PS-20's organ, some noise, and other sounds I thought I might use live. 
 
-I consider those old Top Octave organs to be early additive synthesizers and love their terrible sounds! I vibed this nightmare so I could have a portable version of my organ for gigs. Lean into layering tones like you would an old transistor organ to get some unique sounds. A good example of the real deal in action can be found [here](https://www.youtube.com/watch?v=HUgGfZQORfk) and [here](https://www.youtube.com/watch?v=3ELkWBkUn8I). 
+I consider those old top octave organs to be early additive synthesizers and love their terrible sounds! I vibed this nightmare so I could have a portable version of my organ for gigs. Lean into layering tones like you would an old transistor organ to get some unique sounds. A good example of the real deal in action can be found [here](https://www.youtube.com/watch?v=HUgGfZQORfk) and [here](https://www.youtube.com/watch?v=3ELkWBkUn8I). 
 
-HOLD save to turn the Mellotron flute on and off, hold HOME to switch back and forth between the soundbanks. Hold SEL to have a hold function for drones. FX gets you reverb/delay and the Mellotron volume.
+The 8 buttons to the right act like your organ tab switches for selecting the fifferent voices. The four remaining buttons on the left control different functions.
 
-This was designed for personal use to be simple, musical and lofi, no sequencer, or screen diving! I have tested it but use at your own risk! I have no idea how to code, I just wanted this instrument to exist and have access to a free claude account.
+Hold down SAVE to turn the Mellotron flute on and off
+hold HOME to switch back and forth between the soundbanks 
+Hold SEL to have a hold function for drones 
+FX gets you reverb/delay and the Mellotron volume.
+
+This was designed for personal use to be simple, musical and lofi, no sequencer and minimal screen diving! I have tested it on my early FM1 but use at your own risk! I have no idea how to code, I just wanted this instrument to exist and have access to a free claude account.
+
+AI Slop below (we are all doomed)
 
 <img width="480" height="480" alt="lowrey_fm" src="https://github.com/user-attachments/assets/3879d62c-2cde-412d-add2-260a1a111860" />
 
