@@ -12,7 +12,7 @@ hold HOME to switch back and forth between the soundbanks
 Hold SEL to have a hold function for drones 
 FX gets you reverb/delay and the Mellotron volume.
 
-This was designed for personal use to be simple, musical and lofi, no sequencer and minimal screen diving! I have tested it on my early FM1 but use at your own risk! I have no idea how to code, I just wanted this instrument to exist and have access to a free claude account.
+This was designed for personal use to be simple, musical, and lofi, no sequencer and minimal screen diving! I have tested it on my early FM1 but use at your own risk! I have no idea how to code, I just wanted this instrument to exist and have access to a free claude account.
 
 I apologize for vibe coding this monstrosity, I give up the last shred of punk cred I had and promise to not drink enough water as penance for my sins,
 
