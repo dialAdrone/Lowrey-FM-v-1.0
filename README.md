@@ -1,6 +1,8 @@
 # Lowrey FM v 1.0
 
-Custom firmware for the **M-VAVE FM-1**: two banks of eight layerable voices, a real Mellotron flute you can blend under any of them, reverb, delay, colour themes and animated screens.
+Custom FM-1 firmware emulating my old Lowrey Teenie Geenie Organ with a bonus mode of some fun sounds: two banks of eight layerable voices, a real Mellotron flute (borrowed from the amazing fmel-1) Simple reverb & delay.
+
+This was designed for personal use to be simple, musical and lofi, no sequencer, or screen diving!
 
 It is one C file, `main.c`, written for **[FM1 Studio](https://fm1studio.com)**.
 
