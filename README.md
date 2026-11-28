@@ -46,7 +46,7 @@ SELECT steps through all banks except the drums. Tap the corresponding 8 button 
 
 ## Build
 
-Copy the text of `main.c` into [FM1 Studio](https://fm1studio.com), then COMPILE, and DOWNLOAD or INSTALL.
+Copy the text of [main.c](https://github.com/dialAdrone/Lowrey-FM-v-1.0/blob/main/main.c) into [FM1 Studio](https://fm1studio.com), then COMPILE, and DOWNLOAD or INSTALL.
 
 or
 
