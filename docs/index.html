@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lowrey FM Simulator</title>
+<meta name="description" content="Play Lowrey FM, a Lowrey home-organ firmware for the M-VAVE FM-1, in the browser: the real firmware, compiled to WebAssembly.">
+<link rel="icon" href="install/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root { --ground: #24160c; --ink: #f8fcd8; --muted: #c8bca0; --rule: #5a3a22; --card: #402818; --accent: #f8a400;
+        --accent-ink: #24160c; --navy: #103870; --body: #1b1b1d; --body2: #2a2a2e; --btn: #3a3a40; --led: #fff6c8;
+        color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--ground); color: var(--ink); font: 400 16px/1.5 "IBM Plex Sans", system-ui, sans-serif;
+       padding: 20px 16px 40px; }
+main { max-width: 900px; margin: 0 auto; }
+h1, .lbl, button, .k span, a.pill { font-family: "Silkscreen", ui-monospace, monospace; letter-spacing: .02em; }
+.top { display: flex; align-items: center; gap: .8rem; flex-wrap: wrap; margin-bottom: 12px; }
+h1 { margin: 0; color: var(--accent); font-size: 1.7rem; }
+.top p { margin: 0; color: var(--muted); flex: 1 1 14rem; }
+a.pill { color: var(--ink); text-decoration: none; border: 1px solid var(--rule); border-radius: 4px; padding: .25em .7em; font-size: .8rem; }
+a.pill.go { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.fm1 { background: linear-gradient(var(--body2), var(--body)); border-radius: 14px; padding: 18px; border: 1px solid #000;
+       box-shadow: 0 10px 30px rgba(0,0,0,.45); position: relative; }
+.upper { display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: start; }
+.screen { position: relative; width: 480px; max-width: 100%; aspect-ratio: 1; background: #000; border: 6px solid #0b0b0c; border-radius: 6px; }
+canvas { width: 100%; height: 100%; image-rendering: pixelated; display: block; }
+.side { display: flex; flex-direction: column; gap: 14px; }
+.knobs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.knobs.four { grid-template-columns: repeat(4, 1fr); }
+.knob { display: flex; flex-direction: column; align-items: center; gap: 4px; touch-action: none; user-select: none; cursor: ns-resize; }
+.knob .dial { width: 54px; height: 54px; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #5a5a62, #26262a 70%);
+              border: 2px solid #111; position: relative; }
+.knob .dial::after { content: ""; position: absolute; left: 50%; top: 5px; width: 3px; height: 14px; margin-left: -1.5px; background: var(--ink); border-radius: 2px;
+                     transform-origin: 50% 22px; transform: rotate(var(--a, 0deg)); }
+.knob.big .dial { width: 64px; height: 64px; }
+.knob.big .dial::after { transform-origin: 50% 27px; }
+.lbl { font-size: .62rem; color: var(--muted); text-align: center; }
+.btns { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+button { font-size: .7rem; padding: .7rem .2rem; border-radius: 5px; border: 1px solid #000; background: var(--btn); color: #bdbdc4;
+         cursor: pointer; touch-action: none; user-select: none; transition: background .06s; }
+button.l1 { color: #fff; box-shadow: inset 0 0 0 1px rgba(255,246,200,.25); }
+button.l2 { color: #fff; background: #4a4a3e; }
+button.l3 { color: #111; background: var(--led); }
+button.red.l3 { background: #ff5a4a; color: #fff; }
+button.down { filter: brightness(.8); transform: translateY(1px); }
+.master { display: flex; align-items: center; gap: 8px; }
+.master input { flex: 1; accent-color: var(--accent); }
+.lower { margin-top: 16px; display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: end; }
+.oct { display: flex; flex-direction: column; gap: 8px; width: 64px; }
+.kbwrap { overflow-x: auto; }
+.kb { position: relative; height: 150px; min-width: 560px; touch-action: none; user-select: none; }
+.k { position: absolute; top: 0; border: 1px solid #111; border-radius: 0 0 5px 5px; display: flex; align-items: flex-end; justify-content: center; }
+.k.w { background: #eee8d8; height: 150px; z-index: 1; }
+.k.b { background: #111; height: 92px; z-index: 2; }
+.k.lit.w { background: #fff3a0; } .k.lit.b { background: #5a5020; }
+.k.on.w { background: #f8a400; } .k.on.b { background: #c47e00; }
+.k span { font-size: .55rem; color: #8a8270; padding-bottom: 6px; } .k.b span { color: #777; }
+.start { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(20,12,6,.72); border-radius: 14px; z-index: 5; }
+.start button { font-size: 1rem; padding: 1rem 1.6rem; background: var(--accent); color: var(--accent-ink); }
+.help { margin-top: 18px; background: var(--card); border: 2px solid var(--rule); border-radius: 4px; padding: 14px 16px; color: var(--muted); font-size: .92rem; }
+.help b { color: var(--ink); }
+footer { margin-top: 1.6rem; color: var(--muted); font-size: .8rem; border-top: 1px solid var(--rule); padding-top: .8rem; }
+footer a { color: inherit; }
+@media (max-width: 760px) { .upper { grid-template-columns: 1fr; } .screen { margin: 0 auto; } .fm1 { padding: 12px; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="top">
+    <h1>Lowrey FM</h1>
+    <p>The real firmware, running in your browser</p>
+    <a class="pill go" href="install/">Install on your FM-1</a>
+    <a class="pill" href="https://github.com/dialAdrone/Lowrey-FM-v-1.0">GitHub</a>
+  </div>
+
+  <div class="fm1" id="fm1">
+    <div class="start" id="start"><button type="button" id="go">Power on (sound on)</button></div>
+    <div class="upper">
+      <div class="screen"><canvas id="lcd" width="240" height="240"></canvas></div>
+      <div class="side">
+        <div class="knobs" id="knobs"></div>
+        <div class="knobs four" id="knobs2"></div>
+        <div class="btns" id="btns-top"></div>
+        <div class="btns" id="btns-voice"></div>
+        <div class="master"><span class="lbl">MASTER</span><input type="range" id="master" min="0" max="1023" value="800" aria-label="Master volume"></div>
+      </div>
+    </div>
+    <div class="lower">
+      <div class="oct" id="oct"></div>
+      <div class="kbwrap"><div class="kb" id="kb"></div></div>
+    </div>
+  </div>
+
+  <div class="help">
+    <b>Play:</b> click the keys, or use your computer keyboard: the home row <b>A S D F G H J K L ; '</b> plays the white keys from F, the row above (<b>W E R Y U O P [</b>) the black ones.
+    <b>Knobs:</b> drag up/down or scroll over them. Buttons can be held. A MIDI keyboard works too in Chrome or Edge.
+    The 8 lower buttons switch the voices on the screen's cards. Settings are kept in this browser.
+  </div>
+  <footer>Lowrey FM, GPL-3.0 · built with <a href="https://fm1studio.com">FM1 Studio</a> by Tim Samshuijzen (GPL-3.0) · Mellotron M400S flute tapes by Taijiguy, non-commercial use.</footer>
+</main>
+<script src="sim.js"></script>
+</body>
+</html>
