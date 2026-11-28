@@ -1,6 +1,6 @@
 # Lowrey FM v 1.1
 
-A firmware for the M-VAVE FM-1 that sounds like that f*cked up 70s home organ you found on the curb. includes an organ style drum machine, a pocket piano inspired synth, some lofi glitches, Yamaha PS-20 inspired sounds, and a mellotron flute sampled from original tapes. Designed for my own musical misadventures with an emphasis on the kind of sounds you might find at a thrift store if you're lucky. 
+A firmware for the M-VAVE FM-1 that sounds like that f*cked up 70s home organ you found on the curb. includes the voices of a Lowrey Teenie Genie organ, an organ style drum machine, a pocket piano inspired synth, some lofi glitches, Yamaha PS-20 inspired sounds, and a mellotron flute sampled from original tapes. Designed for my own musical misadventures with an emphasis on the kind of sounds you might find at a thrift store if you're lucky. 
 
 TOG organs were an early adventure in additive synthesis, you can layer the different tones on top of each other to create new sounds. Each image functions the same way the voice tabs do on an organ.
 
