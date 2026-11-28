@@ -56,7 +56,10 @@ Everything is synthesized in code except the Mellotron flute layer on bank A.
 
 or
 
-download the firmware file and use your preffered firmware installer https://github.com/dialAdrone/Lowrey-FM-v-1.0/releases/download/lowreyFM/lowrey_fm_v1_1.fwsc
+download the firmware file and use your preferred firmware installer: 
+https://github.com/dialAdrone/Lowrey-FM-v-1.0/releases/download/lowreyFM/lowrey_fm_v1_1.fwsc
+
+The vibes are strong with this one! Install at your own risk!
 
 ## Credits and licence
 
