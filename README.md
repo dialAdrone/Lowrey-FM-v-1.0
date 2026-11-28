@@ -1,6 +1,6 @@
 # Lowrey FM
 
-A firmware for the M-VAVE FM-1 that turns it into a 70s home organ, built with FM1 Studio (`fm1.h`).
+A firmware for the M-VAVE FM-1 that sounds like that f*cked up 70s home organ you found on the curb., built with FM1 Studio (`fm1.h`).
 
 ## What it does
 
