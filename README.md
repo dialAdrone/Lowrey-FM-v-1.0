@@ -46,6 +46,9 @@ SELECT steps through all banks except the drums. Tap the corresponding 8 button 
 
 
 ## Installing
+[Try this web installer](https://dialadrone.github.io/Lowrey-FM-v-1.0/install/)
+
+or
 
 Copy the text of [main.c](https://github.com/dialAdrone/Lowrey-FM-v-1.0/blob/main/main.c) into [FM1 Studio](https://fm1studio.com), then COMPILE, and DOWNLOAD or INSTALL.
 
@@ -53,6 +56,9 @@ or
 
 download the firmware file and use your preferred firmware installer: 
 https://github.com/dialAdrone/Lowrey-FM-v-1.0/releases/download/lowreyFM/lowrey_fm_v1_1.fwsc
+
+or 
+
 
 The vibes are strong with this one! Install at your own risk! I have tested this on my own FM1 and play it daily.
 
