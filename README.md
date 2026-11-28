@@ -1,22 +1,22 @@
-# Lowrey FM
+# Lowrey FM v 1.1
 
-A firmware for the M-VAVE FM-1 that sounds like that f*cked up 70s home organ you found on the curb., built with FM1 Studio (`fm1.h`).
+A firmware for the M-VAVE FM-1 that sounds like that f*cked up 70s home organ you found on the curb including an organ style drum machine, a pocket piano inspired synth, some lofi glitches, Yamaha PS-20 inspired sounds, and a mellotron flute sampled from original tapes.
+
+TOG organs were an early adventure in additive synthesis, you can layer the different tones on top of each other to create new sounds. 
+
+<img width="480" height="480" alt="cover" src="https://github.com/user-attachments/assets/56c606c5-856c-4609-ac45-26617cf33c82" />
+
+built with FM1 Studio (`fm1.h`). flute pulled from the amazing FMEL-1 firmware.
 
 ## What it does
 
-- **Bank A, LOWREY:** flute, harpsichord, horn, reed, strings, vox, vibes and bass, stacked like organ
-  stops, plus a Mellotron flute layer.
-- **Bank B and Bank C:** more organ and character voices, including PIANO (a soft analog electric
-  piano in the style of the late-70s electronic pianos) and M.BOX (a vibraphone with motor tremolo).
+- **Bank A, is based on a Lowrey Teenie Genie top octave generator organ. :** flute, harpsichord, horn, reed, strings, vox, vibraphone and bass, stacked like organ stops, plus a Mellotron flute layer.
+- **Bank B and Bank C:** Some glitchy sounds inspired by the band Broadcast, some softer sounds from the legendary Yamaha PS-20, a dial-up modem, and some other fun stuff..
 - **WAVES:** a wavetable synth.
-- **POCKET:** after Critter & Guitari's Pocket Piano, with seven modes including its two-octave
-  arpeggiator and octave cascade.
-- **RHYTHM:** an organ rhythm unit with eight built-in beats (two can play at once), a drum sequencer,
-  and an automatic bass: on bank A with BASS on and a beat running, the lowest octave of keys plays
-  the bass on every kick, with only the mellow voices (no harpsichord or strings) held under it.
+- **POCKET:** modeled after the early version of Critter & Guitari's Pocket Piano, with seven modes including its two-octave arpeggiator and octave cascade arpeggiator.
+- **RHYTHM:** an organ rhythm unit with an automatic bass: on bank A with BASS on and a beat running, the lowest octave of keys plays the bass on every kick.
   The drums' volume and tone are remembered.
-- **Also:** a note sequencer, MIDI in (single or multi-channel) and MIDI out, and USB audio, with an
-  option to put the organ on the left channel and the drums on the right.
+- **Also:** a note sequencer, MIDI in (single or multi-channel) and MIDI out, and USB audio, with an option to put the organ on the left channel and the drums on the right.
 
 ## POCKET knobs
 
@@ -47,7 +47,7 @@ Hold SEQ on the RHYTHM bank. 16 steps, laid out on the 16 white keys, like a Vol
 | GLO | GLOBAL (MIDI and USB settings) |
 | FX | Pictures |
 
-SELECT steps through the banks. Tap a voice button to switch it on or off.
+SELECT steps through all banks except the drums. Tap the corresponding 8 button on the right side of the FM-1 to turn voices on and off.
 
 ## Build
 
@@ -61,3 +61,4 @@ Everything is synthesized in code except the Mellotron flute layer on bank A.
   commercial software. Because of them, this firmware may be shared but not sold.
 - The tape preparation and playback follow FMEL-1 by AntonioAltea (GPL-3.0).
 - Reverb: the Freeverb design (Jezar at Dreampoint, public domain).
+- The Pocket Piano was created by Critter and Guitarri https://github.com/critterandguitari/201-PocketPiano
