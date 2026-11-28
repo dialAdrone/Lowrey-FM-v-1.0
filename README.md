@@ -4,7 +4,7 @@ A firmware for the M-VAVE FM-1 that sounds like that f*cked up 70s home organ yo
 
 TOG organs were an early adventure in additive synthesis, you can layer the different tones on top of each other to create new sounds. 
 
-<img width="480" height="480" alt="cover" src="https://github.com/user-attachments/assets/56c606c5-856c-4609-ac45-26617cf33c82" />
+<img width="480" height="480" alt="lowrey_fm" src="https://github.com/user-attachments/assets/43de2e69-eab7-4bc2-b345-d0da87bead86" />
 
 built with FM1 Studio (`fm1.h`). flute pulled from the amazing FMEL-1 firmware.
 
