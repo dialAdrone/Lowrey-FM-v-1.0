@@ -1,0 +1,6 @@
+{
+  "version": "v1.1",
+  "packages": {
+    "fm1": { "file": "lowrey_fm_v1_1.fwsc", "sha256": "3e8cde1503903edb9290b2e3148b20fc4e027d666fc67e11388e16960d17cbec", "product": "FM-1_58000" }
+  }
+}

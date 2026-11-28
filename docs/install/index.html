@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en" data-board="fm1">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Install Lowrey FM</title>
+<meta name="description" content="Install Lowrey FM, a Lowrey home-organ firmware for the M-VAVE FM-1, over USB from the browser.">
+<link rel="icon" href="icon.png">
+<meta property="og:title" content="Install Lowrey FM on the M-VAVE FM-1">
+<meta name="twitter:card" content="summary_large_image">
+<script>   /* the language before anything is drawn: the one chosen, else the browser's (Spanish or English) */
+try {
+  const l = localStorage.getItem("lowrey-lang") || (/^es\b/i.test(navigator.language || "") ? "es" : "en");
+  if (l === "es") document.documentElement.lang = "es";
+} catch (e) {}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+<style>
+/* Lowrey FM's own colours, from the firmware's screen: the warm brown stage, the navy voice cards,
+   the golden yellow and cream of its text, its spring green and coral */
+:root { --ground: #24160c; --ink: #f8fcd8; --muted: #c8bca0; --rule: #5a3a22; --card: #402818; --accent: #f8a400;
+        --accent-ink: #24160c; --soft: #103870; --ok: #b0fc58; --bad: #f89470; --warn: #fff080; --navy: #103870;
+        color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: var(--ground); color: var(--ink); margin: 0; padding: 24px 16px 48px;
+       font: 400 16px/1.55 "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+h1, h2, button, a.gh, a.big, .pick label, summary { font-family: "Silkscreen", ui-monospace, monospace; letter-spacing: .02em; }
+h1 { color: var(--accent); }
+main { max-width: 720px; margin: 0 auto; }
+h1 { margin: 0; font-size: 1.9rem; font-weight: 700; }
+h2 { font-size: 1.12rem; margin: 0 0 .6rem; display: flex; align-items: center; gap: .6rem; }
+h2 .n { display: inline-grid; place-items: center; width: 1.7rem; height: 1.7rem; border-radius: 3px; flex: none;
+        background: var(--accent); color: var(--accent-ink); font-size: .9rem; font-weight: 700; }
+p { margin: .45rem 0; }
+ul, ol { margin: .4rem 0; padding-left: 1.25rem; }
+li { margin: .2rem 0; }
+.muted { color: var(--muted); }
+section { background: var(--card); border: 2px solid var(--rule); border-radius: 4px; padding: 18px; margin: 16px 0; }
+button { font: inherit; font-weight: 600; padding: .6rem 1.15rem; border-radius: 4px; border: 1px solid var(--accent);
+         background: var(--accent); color: var(--accent-ink); cursor: pointer; }
+button.secondary { background: transparent; color: var(--accent); }
+button.small { font-size: .85rem; padding: .3rem .7rem; font-weight: 500; }
+button:disabled { opacity: .45; cursor: not-allowed; }
+button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+label { display: flex; gap: .55rem; align-items: flex-start; margin: .5rem 0; font-weight: 600; }
+input[type=checkbox] { margin-top: .32rem; width: 1.05rem; height: 1.05rem; accent-color: var(--accent); flex: none; }
+.ok { color: var(--ok); }
+.bad { color: var(--bad); }
+.warn { color: var(--warn); }
+progress { width: 100%; height: 16px; accent-color: var(--accent); }
+code { font-size: .92em; }
+a { color: var(--accent); }
+.top { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.top p { margin: 0; color: var(--muted); flex: 1 1 16rem; }
+a.gh { margin-left: auto; font-size: .85rem; padding: .25em .7em; border: 1px solid var(--rule); border-radius: 4px; color: var(--ink); text-decoration: none; }
+button.lang { font-size: .85rem; font-weight: 500; padding: .25em .7em; background: var(--card);
+              color: var(--ink); border-color: var(--rule); }
+a.big { display: block; text-align: center; padding: 1rem; margin: 16px 0 4px; font-size: 1.2rem; font-weight: 600;
+        text-decoration: none; color: var(--accent-ink); background: var(--accent); border-radius: 12px; }
+a.big:hover { filter: brightness(1.07); }
+.browsers { display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: .5rem; margin: .6rem 0; }
+.browsers div { border: 1px solid var(--rule); border-radius: 4px; padding: .5rem .7rem; font-size: .92rem; }
+.browsers b { display: block; }
+.yes { background: var(--soft); }
+#mine { font-weight: 600; }
+.row { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; margin: .6rem 0; }
+.steps-seen { font-size: .95rem; }
+details { margin: .55rem 0; }
+summary { cursor: pointer; font-weight: 600; }
+#log { white-space: pre-wrap; font: 12px/1.4 "IBM Plex Mono", ui-monospace, Menlo, monospace; background: #1a1008 !important; color: var(--muted); max-height: 180px; overflow: auto;
+       background: var(--card); border: 1px solid var(--rule); border-radius: 4px; padding: .6rem; margin: .4rem 0; }
+#log:empty { display: none; }
+.shots { margin: 1rem 0 .4rem; }
+.shots figure { margin: 0 auto; max-width: 480px; border: 3px solid var(--navy); background: var(--navy); }
+.shots img { display: block; width: 100%; height: auto; image-rendering: pixelated; }
+html[lang="en"] [data-lang="es"], html[lang="es"] [data-lang="en"] { display: none !important; }
+footer.credits { margin-top: 2rem; padding-top: .8rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: .8rem; }
+footer.credits a { color: inherit; }
+html[data-board="fm1"] [data-board="smk37"], html[data-board="smk37"] [data-board="fm1"] { display: none !important; }
+.pick { display: flex; flex-wrap: wrap; gap: .5rem; margin: .5rem 0; }
+.pick label { margin: 0; font-weight: 600; border: 1px solid var(--rule); border-radius: 4px; padding: .45rem .8rem; cursor: pointer; align-items: center; }
+.pick label:has(input:checked) { border-color: var(--accent); background: var(--soft); }
+.pick input { margin: 0; accent-color: var(--accent); }
+.pick small { font-weight: 400; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <div class="top">
+    <h1><span data-lang="en">Install Lowrey FM</span><span data-lang="es">Instalar Lowrey FM</span> <span class="ver"></span></h1>
+    <a class="gh" href="https://github.com/dialAdrone/Lowrey-FM-v-1.0">GitHub</a>
+    <button class="lang" id="lang" type="button"><span data-lang="en">Español</span><span data-lang="es">English</span></button>
+  </div>
+  <p class="muted" data-lang="en">A Lowrey home organ for the FM-1</p>
+  <p class="muted" data-lang="es">Un órgano Lowrey para el FM-1</p>
+  <div class="shots">
+    <figure><img src="lowrey_fm.gif" width="480" height="480" alt="Lowrey FM running on the FM-1: banks A, B and C, POCKET, the rhythm beats and the start screen"></figure>
+  </div>
+
+  <section aria-labelledby="h-board">
+    <h2 id="h-board"><span class="n">1</span><span data-lang="en">Your keyboard</span><span data-lang="es">Tu teclado</span></h2>
+    <div class="pick" role="radiogroup" aria-label="board">
+      <label><input type="radio" name="board" value="fm1"> M-VAVE FM-1</label>
+    </div>
+    <div data-board="smk37">
+      <p class="muted"><span data-lang="en">SMK-37 model</span><span data-lang="es">Modelo de SMK-37</span></p>
+      <div class="pick" role="radiogroup" aria-label="model">
+        <label><input type="radio" name="model" value="pro"> SMK-37 Pro <small><span data-lang="en">Like the Starrykey 37 Play</span><span data-lang="es">Similar a Starrykey 37 Play</span></small></label>
+        <label><input type="radio" name="model" value="elite"> SMK-37 Elite</label>
+        <label><input type="radio" name="model" value="mke"> MKE-P37</label>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-ready">
+    <h2 id="h-ready"><span class="n">2</span><span data-lang="en">Before you start</span><span data-lang="es">Antes de empezar</span></h2>
+    <ul>
+      <li><span data-lang="en">Plugged straight in over USB</span><span data-lang="es">Conectado directamente por USB</span></li>
+      <li><span data-lang="en">Close other tabs or apps that may be using MIDI (DAW, M-UPGRADE, other tabs…)</span><span data-lang="es">Cierra otras pestañas o programas que pueden estar usando MIDI (DAW, M-UPGRADE, otras pestañas…)</span></li>
+      <li><span data-board="fm1"><span data-lang="en">Safer over the official firmware or Lowrey FM</span><span data-lang="es">Más seguro sobre el firmware oficial o Lowrey FM</span></span><span data-board="smk37"><span data-lang="en">Safer over the stock firmware or Lowrey FM</span><span data-lang="es">Más seguro sobre el firmware stock o Lowrey FM</span></span></li>
+      <li><span data-lang="en">Don't unplug it until it says «Done»</span><span data-lang="es">No lo desconectes hasta que diga «Hecho»</span></li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="h-install">
+    <h2 id="h-install"><span class="n">3</span><span data-lang="en">Install</span><span data-lang="es">Instalar</span></h2>
+    <p id="mine" role="status"></p>
+    <p id="pkg" role="status"></p>
+    <div class="row">
+      <button id="connect"><span data-lang="en">Find keyboard</span><span data-lang="es">Encontrar teclado</span></button>
+      <span id="dev" class="muted" role="status" aria-live="polite"></span>
+    </div>
+    <div class="row">
+      <button id="install" disabled><span data-lang="en">Install</span><span data-lang="es">Instalar</span> <span class="ver"></span></button>
+      <button id="resume" class="secondary" hidden><span data-lang="en">Resume unfinished install</span><span data-lang="es">Continuar instalación incompleta</span></button>
+    </div>
+    <p id="installwhy" class="muted" role="status"></p>
+    <progress id="bar" max="100" value="0" hidden aria-label="progress"></progress>
+    <p id="status" role="status" aria-live="polite"></p>
+  </section>
+
+  <section>
+    <details>
+      <summary><span data-lang="en">Back to stock firmware</span><span data-lang="es">Volver a firmware stock</span></summary>
+      <div data-board="fm1">
+        <p data-lang="en">Get <code>FM-1.fwsc</code> (PC Firmware, V15) from <a href="https://www.m-vave.com/download" rel="noopener">m-vave.com</a>
+          (or <a href="https://yms-file-store.oss-cn-hongkong.aliyuncs.com/software/firmware/FM-1.fwsc" rel="noopener">straight from M-VAVE's server</a>)
+          and choose it here. Only the unmodified official file is accepted.</p>
+        <p data-lang="es">Descarga <code>FM-1.fwsc</code> (PC Firmware, V15) de <a href="https://www.m-vave.com/download" rel="noopener">m-vave.com</a>
+          (o <a href="https://yms-file-store.oss-cn-hongkong.aliyuncs.com/software/firmware/FM-1.fwsc" rel="noopener">directo del servidor de M-VAVE</a>)
+          y elígelo aquí. Solo se acepta el archivo oficial sin modificar.</p>
+        <div class="row"><input type="file" id="stockfile" accept=".fwsc" aria-label="FM-1.fwsc">
+          <button id="stock" class="secondary" disabled><span data-lang="en">Install</span><span data-lang="es">Instalar</span></button></div>
+        <p id="stockwhy" class="muted" role="status"></p>
+      </div>
+      <div data-board="smk37">
+        <p data-lang="en">With M-VAVE's updater, <b>M-UPGRADE</b> (<a href="https://www.m-vave.com/product?id=smk-37-elite" rel="noopener">m-vave.com</a>), and your model's file:
+          <a href="https://yms-file-store.oss-cn-hongkong.aliyuncs.com/software/firmware/SMK-37Pro/SMK-37%20Pro_016.fwsc" rel="noopener">SMK-37 Pro V016</a>,
+          <a href="https://yms-file-store.oss-cn-hongkong.aliyuncs.com/software/firmware/SMK-37Elite/SMK-37%20Elite_016.fwsc" rel="noopener">SMK-37 Elite V016</a>.
+          Your calibration and pairing stay.</p>
+        <p data-lang="es">Con el instalador de M-VAVE, <b>M-UPGRADE</b> (<a href="https://www.m-vave.com/product?id=smk-37-elite" rel="noopener">m-vave.com</a>), y el archivo de tu modelo:
+          <a href="https://yms-file-store.oss-cn-hongkong.aliyuncs.com/software/firmware/SMK-37Pro/SMK-37%20Pro_016.fwsc" rel="noopener">SMK-37 Pro V016</a>,
+          <a href="https://yms-file-store.oss-cn-hongkong.aliyuncs.com/software/firmware/SMK-37Elite/SMK-37%20Elite_016.fwsc" rel="noopener">SMK-37 Elite V016</a>.
+          La calibración y el emparejamiento se conservan.</p>
+      </div>
+    </details>
+  </section>
+
+  <section>
+    <details>
+      <summary><span data-lang="en">Help</span><span data-lang="es">Ayuda</span></summary>
+      <div data-lang="en">
+        <details><summary>Windows: the browser freezes on «update mode»</summary>
+          <p><code>chrome://flags/#use-winrt-midi-api</code> → Enabled</p></details>
+        <details><summary>Dark or restarting after installing</summary>
+          <p>Hold <b>OCT−</b> and <b>OCT+</b> 5 s, or <b>OCT−</b> while switching on: the USB rescue. Install again.</p></details>
+        <details><summary>Stuck in another firmware's update mode</summary>
+          <p>Switch it off and on.</p></details>
+        <details data-board="smk37"><summary>Every key a «C», dead wheels</summary>
+          <p>Another firmware broke the key map: genkigenki's <a href="https://genkigenki.github.io/smk37/help.html" rel="noopener">Repair</a>. Lowrey FM never writes it.</p></details>
+        <details data-board="smk37"><summary>Dead wheels after a repair</summary>
+          <p>Calibrate the wheels in M-VAVE's settings.</p></details>
+        <details><summary>Black screen, a disk «WL82 UBOOT1.00»</summary>
+          <p data-board="fm1"><a href="https://github.com/Quixotic7/MvaveFM1Unbricker" rel="noopener">MvaveFM1Unbricker</a> with V15. Nothing over USB: <a href="https://github.com/kurogedelic/FM-1-transporter" rel="noopener">FM-1-transporter</a>.</p>
+          <p data-board="smk37">Not lost. Ask before touching anything: <a href="https://genkigenki.github.io/smk37/help.html" rel="noopener">SMK-37 help</a>.</p></details>
+      </div>
+      <div data-lang="es">
+        <details><summary>Windows: el navegador se congela en «modo actualización»</summary>
+          <p><code>chrome://flags/#use-winrt-midi-api</code> → Enabled</p></details>
+        <details><summary>Pantalla negra o reinicios tras instalar</summary>
+          <p>Mantén <b>OCT−</b> y <b>OCT+</b> 5 s, u <b>OCT−</b> al encender: el rescate USB. Instala otra vez.</p></details>
+        <details><summary>Atascado en modo actualización de otro firmware</summary>
+          <p>Apágalo y vuélvelo a encender.</p></details>
+        <details data-board="smk37"><summary>Todas las teclas una «C», ruedas muertas</summary>
+          <p>Otro firmware rompió el mapa de teclas: el <a href="https://genkigenki.github.io/smk37/help.html" rel="noopener">Repair</a> de genkigenki. Lowrey FM nunca lo toca.</p></details>
+        <details data-board="smk37"><summary>Ruedas muertas tras una reparación</summary>
+          <p>Calibra las ruedas en los ajustes de M-VAVE.</p></details>
+        <details><summary>Pantalla negra y un disco «WL82 UBOOT1.00»</summary>
+          <p data-board="fm1"><a href="https://github.com/Quixotic7/MvaveFM1Unbricker" rel="noopener">MvaveFM1Unbricker</a> con el V15. Si no aparece nada por USB: <a href="https://github.com/kurogedelic/FM-1-transporter" rel="noopener">FM-1-transporter</a>.</p>
+          <p data-board="smk37">No está perdido. Pregunta antes de tocar nada: <a href="https://genkigenki.github.io/smk37/help.html" rel="noopener">ayuda del SMK-37</a>.</p></details>
+      </div>
+      <div class="row">
+        <button id="copylog" class="secondary small" type="button"><span data-lang="en">Copy log</span><span data-lang="es">Copiar log</span></button>
+        <a href="https://github.com/dialAdrone/Lowrey-FM-v-1.0/issues" rel="noopener"><span data-lang="en">Report</span><span data-lang="es">Reportar</span></a>
+      </div>
+      <div id="log" aria-label="log"></div>
+    </details>
+  </section>
+
+  <footer class="credits"><span data-lang="en">Credits</span><span data-lang="es">Créditos</span> ·
+    <span data-lang="en">Felucca's installer</span><span data-lang="es">Instalador de Felucca</span>
+    (<a href="https://github.com/hugelton/Felucca" rel="noopener">Leo Kuroshita</a>, GPL-3.0) ·
+    <span data-lang="en">page after</span><span data-lang="es">página según</span>
+    <a href="https://github.com/AntonioAltea/fmel-1" rel="noopener">FMEL-1</a> (AntonioAltea, GPL-3.0)</footer>
+</main>
+<script type="module" src="install.js"></script>
+</body>
+</html>
