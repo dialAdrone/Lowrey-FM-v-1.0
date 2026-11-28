@@ -4,7 +4,8 @@ A firmware for the M-VAVE FM-1 that sounds like that f*cked up 70s home organ yo
 
 TOG organs were an early adventure in additive synthesis, you can layer the different tones on top of each other to create new sounds. Each image functions the same way the voice tabs do on an organ.
 
-<img width="480" height="480" alt="lowrey_fm" src="https://github.com/user-attachments/assets/43de2e69-eab7-4bc2-b345-d0da87bead86" />
+<img width="480" height="480" alt="lowrey_fm(1)" src="https://github.com/user-attachments/assets/89ff9a6b-d30f-4aab-bb07-00dbc7916e7f" />
+
 
 Based on the Lowrey Teenie Genie Organ and Critter and Guitari Pocket Piano. Built with FM1 Studio (`fm1.h`), flute pulled from the amazing FMEL-1 firmware.
 
