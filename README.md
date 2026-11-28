@@ -1,14 +1,14 @@
 # Lowrey FM v 1.1
 
-A firmware for the M-VAVE FM-1 that sounds like that f*cked up 70s home organ you found on the curb including an organ style drum machine, a pocket piano inspired synth, some lofi glitches, Yamaha PS-20 inspired sounds, and a mellotron flute sampled from original tapes. Designed for my own musical misadventures with an emphasis on the kind of sounds you might find at a thrift store if you're lucky. 
+A firmware for the M-VAVE FM-1 that sounds like that f*cked up 70s home organ you found on the curb. includes an organ style drum machine, a pocket piano inspired synth, some lofi glitches, Yamaha PS-20 inspired sounds, and a mellotron flute sampled from original tapes. Designed for my own musical misadventures with an emphasis on the kind of sounds you might find at a thrift store if you're lucky. 
 
-TOG organs were an early adventure in additive synthesis, you can layer the different tones on top of each other to create new sounds. 
+TOG organs were an early adventure in additive synthesis, you can layer the different tones on top of each other to create new sounds. Each image functions the same way the voice tabs do on an organ.
 
 <img width="480" height="480" alt="lowrey_fm" src="https://github.com/user-attachments/assets/43de2e69-eab7-4bc2-b345-d0da87bead86" />
 
 built with FM1 Studio (`fm1.h`). flute pulled from the amazing FMEL-1 firmware.
 
-## What it does
+## The Sounds
 
 - **Bank A, is based on a Lowrey Teenie Genie top octave generator organ. :** flute, harpsichord, horn, reed, strings, vox, vibraphone and bass, stacked like organ stops, plus a Mellotron flute layer.
 - **Bank B and Bank C:** Some glitchy sounds inspired by the band Broadcast, some softer sounds from the legendary Yamaha PS-20, a dial-up modem, and some other fun stuff..
@@ -17,12 +17,6 @@ built with FM1 Studio (`fm1.h`). flute pulled from the amazing FMEL-1 firmware.
 - **RHYTHM:** an organ rhythm unit with an automatic bass: on bank A with BASS on and a beat running, the lowest octave of keys plays the bass on every kick.
   The drums' volume and tone are remembered.
 - **Also:** a note sequencer, MIDI in (single or multi-channel) and MIDI out, and USB audio, with an option to put the organ on the left channel and the drums on the right.
-
-## POCKET knobs
-
-Laid out like the other banks: K1 reverb, K2 the mode's first control (speed), K3 volume, K4 the
-mode's second control (gate). The octave buttons tune. The eighth voice button is the Pocket Piano's
-BUTTON (waveform, or octave jump).
 
 ## Drum sequencer
 
@@ -36,6 +30,8 @@ Hold SEQ on the RHYTHM bank. 16 steps, laid out on the 16 white keys, like a Vol
 
 ## Getting around
 
+SELECT steps through all banks except the drums. Tap the corresponding 8 button on the right side of the FM-1 to turn voices on and off.
+
 | Hold | Goes to |
 |---|---|
 | HOME | Bank A |
@@ -47,12 +43,10 @@ Hold SEQ on the RHYTHM bank. 16 steps, laid out on the 16 white keys, like a Vol
 | GLO | GLOBAL (MIDI and USB settings) |
 | FX | Pictures |
 
-SELECT steps through all banks except the drums. Tap the corresponding 8 button on the right side of the FM-1 to turn voices on and off.
 
 ## Build
 
-Open `main.c` in [FM1 Studio](https://fm1studio.com), then COMPILE, and DOWNLOAD or INSTALL.
-Everything is synthesized in code except the Mellotron flute layer on bank A.
+Copy the text of `main.c` into [FM1 Studio](https://fm1studio.com), then COMPILE, and DOWNLOAD or INSTALL.
 
 or
 
