@@ -54,6 +54,10 @@ SELECT steps through all banks except the drums. Tap the corresponding 8 button 
 Open `main.c` in [FM1 Studio](https://fm1studio.com), then COMPILE, and DOWNLOAD or INSTALL.
 Everything is synthesized in code except the Mellotron flute layer on bank A.
 
+or
+
+download the firmware file and use your preffered firmware installer https://github.com/dialAdrone/Lowrey-FM-v-1.0/releases/download/lowreyFM/lowrey_fm_v1_1.fwsc
+
 ## Credits and licence
 
 - GPL-3.0 (see `LICENSE`), built with FM1 Studio by Tim Samshuijzen.
