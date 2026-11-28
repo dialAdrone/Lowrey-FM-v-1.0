@@ -1,0 +1,9 @@
+{
+  "what": "A Lowrey home-organ firmware: three organ banks, a wavetable bank and a Pocket Piano bank, plus a rhythm unit with built-in beats, a Volca-style drum sequencer and an automatic bass. Note sequencer, MIDI in and out, and USB audio with an organ/drums split.",
+  "kinds": [
+    "synth"
+  ],
+  "image": "cover.png",
+  "color": "#E0A030",
+  "sounds": "licensed: Mellotron M400S flute tapes recorded by Taijiguy (Bernie Kornowicz), free to use in non-commercial software"
+}
